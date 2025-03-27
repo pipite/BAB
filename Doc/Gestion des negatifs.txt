@@ -1,0 +1,36 @@
+Database=bab
+Server=(local)\SQLEXPRESS
+OSAuthent=Yes
+DriverID=MSSQL
+
+
+                      Gestion des negatifs   verifier si admin!!!
+Cas d'un Item -1
+	Dans une Purchase                
+	LA	Delete ligne purchase    interdit
+	LA	Ajout ligne Purchase     interdit
+	LA	Modifie Ligne Purchase   interdit
+	Dans une Sale
+	xA	Delete ligne Sale        -  MAJ LFID_SaleWithoutCode   TDM::TSALITMBeforeDelete
+	xA	Ajout Ligne Sale         +  MAJ LFID_SaleWithoutCode   FormINVITM::ButtonOKClick
+	xA	Modifie ligne Sale       +- MAJ LFID_SaleWithoutCode   FormINVITM::ButtonOKClick
+	Dans un un LF
+	LA	Delete ligne LFITM       interdit
+	LA	Ajout Ligne LFITM        interdit
+	LA	Modifie ligne LFITM      interdit
+
+Cas d'un Item normal
+	Dans une Purchase
+	L*	Delete ligne purchase    +  MAJ LFID_SaleNegativeItem   TDM::TPURITMBeforeDelete 
+	xA	Ajout ligne Purchase     -  MAJ LFID_SaleNegativeItem   FormINVITM::ButtonOKClick 
+		Modifie Ligne Purchase   +- MAJ LFID_SaleNegativeItem   FormINVITM::ButtonOKClick
+	Dans une Sale
+	xA	Delete ligne Sale        -  MAJ LFID_SaleNegativeItem   TDM::TSALITMBeforeDelete
+	LA	Ajout Ligne Sale         +  MAJ LFID_SaleNegativeItem   FormINVITM::ButtonOKClick
+	LA	Modifie ligne Sale       +- MAJ LFID_SaleNegativeItem   FormINVITM::ButtonOKClick
+	Dans un un LF
+		Delete ligne LFITM       MAJ LFID_SaleNegativeItem
+		Ajout Ligne LFITM        MAJ LFID_SaleNegativeItem
+		Modifie ligne LFITM      MAJ LFID_SaleNegativeItem
+
+interdire de créer un -1 en virtuel

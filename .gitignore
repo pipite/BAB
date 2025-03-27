@@ -1,0 +1,22 @@
+*.ilc
+*.ild
+*.ilf
+*.ils
+*.map
+*.pdi
+*.tds
+Component/*
+!Component/Readme.md
+Compil/*
+!Compil/Readme.md
+Obj/*
+!Obj/Readme.md
+Proj/__history
+Proj/__recovery
+Src/__history
+Src/__recovery
+Config - playlist ancien format/
+Inno Setup/
+Redist/*
+Bin/Config/Backup/*
+!Redist/Readme.md

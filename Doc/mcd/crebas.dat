@@ -1,0 +1,238 @@
+#==============================================================
+# Nom de SGBD :  Microsoft Access 2000
+# Date de création :  09/05/2016 19:36:34
+#==============================================================
+
+
+RemoveJoin C=FK_INVOICE_R3_CLIENTS T=INVOICE P=CLIENTS;
+
+RemoveJoin C=FK_ITEMS_R2_GROUP T=ITEMS P="GROUP";
+
+RemoveJoin C=FK_LNK_INV__LNK_INV_I_ITEMS T=LNK_INV_ITM P=ITEMS;
+
+RemoveJoin C=FK_LNK_INV__LNK_INV_I_INVOICE T=LNK_INV_ITM P=INVOICE;
+
+RemoveJoin C=FK_LNK_PUR__LNK_PUR_I_PURCHASE T=LNK_PUR_ITM P=PURCHASE;
+
+RemoveJoin C=FK_LNK_PUR__LNK_PUR_I_ITEMS T=LNK_PUR_ITM P=ITEMS;
+
+RemoveJoin C=FK_LNK_QUO__LNK_QUO_I_ITEMS T=LNK_QUO_ITEM P=ITEMS;
+
+RemoveJoin C=FK_LNK_QUO__LNK_QUO_I_QUOTATIO T=LNK_QUO_ITEM P=QUOTATIONS;
+
+RemoveJoin C=FK_PAIEMENT_R5_PURCHASE T=PAIEMENT P=PURCHASE;
+
+RemoveJoin C=FK_PAIEMENT_R6_INVOICE T=PAIEMENT P=INVOICE;
+
+RemoveJoin C=FK_PURCHASE_R1_SUPPLIER T=PURCHASE P=SUPPLIERS;
+
+RemoveJoin C=FK_QUOTATIO_R4_CLIENTS T=QUOTATIONS P=CLIENTS;
+
+RemoveTble C=CLIENTS;
+
+RemoveTble C="GROUP";
+
+RemoveTble C=INVOICE;
+
+RemoveTble C=ITEMS;
+
+RemoveTble C=LNK_INV_ITM;
+
+RemoveTble C=LNK_PUR_ITM;
+
+RemoveTble C=LNK_QUO_ITEM;
+
+RemoveTble C=PAIEMENT;
+
+RemoveTble C=PURCHASE;
+
+RemoveTble C=QUOTATIONS;
+
+RemoveTble C=SUPPLIERS;
+
+#==============================================================
+# Table : CLIENTS
+#==============================================================
+CreateTble C=CLIENTS N="Clients"
+(
+   C=CLI_IDX T="LONG" P=Yes M=Yes N="CLI_Idx" Z=false,
+   C=CLI_NAME T="VARCHAR(30)" P=No M=No N="CLI_Name" Z=false,
+   C=CLI_SURNAME T="VARCHAR(30)" P=No M=No N="CLI_Surname" Z=false,
+   C=CLI_ADDRESS T="VARCHAR(255)" P=No M=No N="CLI_Address" Z=false
+);
+
+#==============================================================
+# Table : "GROUP"
+#==============================================================
+CreateTble C="GROUP" N="Group"
+(
+   C=GRP_IDX T="LONG" P=Yes M=Yes N="GRP_Idx" Z=false,
+   C=GRP_NAME T="VARCHAR(30)" P=No M=No N="GRP_Name" Z=false,
+   C=GRP_COMMENT T="TEXT(1000)" P=No M=No N="GRP_Comment" Z=false
+);
+
+#==============================================================
+# Table : INVOICE
+#==============================================================
+CreateTble C=INVOICE N="Invoice"
+(
+   C=INV_IDX T="LONG" P=Yes M=Yes N="INV_Idx" Z=false,
+   C=CLI_IDX T="LONG" P=No M=No N="CLI_Idx" Z=false,
+   C=INV_NUM T="LONG" P=No M=No N="INV_Num" Z=false,
+   C=INV_DATE T="DATE" P=No M=No N="INV_Date" Z=false
+);
+
+#==============================================================
+# Table : ITEMS
+#==============================================================
+CreateTble C=ITEMS N="Items"
+(
+   C=ITM_IDX T="LONG" P=Yes M=Yes N="ITM_Idx" Z=false,
+   C=GRP_IDX T="LONG" P=No M=No N="GRP_Idx" Z=false,
+   C=ITM_CODE T="LONG" P=No M=No N="ITM_Code" Z=false,
+   C=ITM_PU_PURCHASE T="LONG" P=No M=No N="ITM_Pu_Purchase" Z=false,
+   C=ITM_PU_SALE T="LONG" P=No M=No N="ITM_Pu_Sale" Z=false,
+   C=ITM_STOCK T="LONG" P=No M=No N="ITM_Stock" Z=false,
+   C=ITM_NAME T="VARCHAR(50)" P=No M=No N="ITM_Name" Z=false,
+   C=ITM_COMMENT T="TEXT(500)" P=No M=No N="ITM_Comment" Z=false
+);
+
+#==============================================================
+# Table : LNK_INV_ITM
+#==============================================================
+CreateTble C=LNK_INV_ITM N="LNK_INV_ITM"
+(
+   C=ITM_IDX T="LONG" P=Yes M=Yes N="ITM_Idx" Z=false,
+   C=INV_IDX T="LONG" P=Yes M=Yes N="INV_Idx" Z=false,
+   C=INVITM_PRICE T="LONG" P=No M=No N="INVITM_Price" Z=false,
+   C=INVITM_QTY T="LONG" P=No M=No N="INVITM_Qty" Z=false
+);
+
+#==============================================================
+# Table : LNK_PUR_ITM
+#==============================================================
+CreateTble C=LNK_PUR_ITM N="LNK_PUR_ITM"
+(
+   C=PUR_IDX T="LONG" P=Yes M=Yes N="PUR_Idx" Z=false,
+   C=ITM_IDX T="LONG" P=Yes M=Yes N="ITM_Idx" Z=false,
+   C=PURITM_PRICE T="LONG" P=No M=No N="PURITM_Price" Z=false,
+   C=PURITM_QTY T="LONG" P=No M=No N="PURITM_Qty" Z=false
+);
+
+#==============================================================
+# Table : LNK_QUO_ITEM
+#==============================================================
+CreateTble C=LNK_QUO_ITEM N="LNK_QUO_ITEM"
+(
+   C=ITM_IDX T="LONG" P=Yes M=Yes N="ITM_Idx" Z=false,
+   C=QUO_IDX T="LONG" P=Yes M=Yes N="QUO_Idx" Z=false,
+   C=QUOITM_PRICE T="LONG" P=No M=No N="QUOITM_Price" Z=false,
+   C=QUOITM_QTY T="LONG" P=No M=No N="QUOITM_Qty" Z=false
+);
+
+#==============================================================
+# Table : PAIEMENT
+#==============================================================
+CreateTble C=PAIEMENT N="Paiement"
+(
+   C=PAY_IDX T="LONG" P=Yes M=Yes N="PAY_Idx" Z=false,
+   C=INV_IDX T="LONG" P=No M=No N="INV_Idx" Z=false,
+   C=PUR_IDX T="LONG" P=No M=No N="PUR_Idx" Z=false,
+   C=PAY_DATE T="DATE" P=No M=No N="PAY_Date" Z=false,
+   C=PAY_AMOUNT T="LONG" P=No M=No N="PAY_Amount" Z=false
+);
+
+#==============================================================
+# Table : PURCHASE
+#==============================================================
+CreateTble C=PURCHASE N="Purchase"
+(
+   C=PUR_IDX T="LONG" P=Yes M=Yes N="PUR_Idx" Z=false,
+   C=SUP_IDX T="LONG" P=No M=No N="SUP_Idx" Z=false,
+   C=PUR_NUM T="LONG" P=No M=No N="PUR_Num" Z=false,
+   C=PUR_ISDEPOSIT T="YESNO" P=No M=No N="PUR_IsDeposit" Z=false,
+   C=PUR_DATE T="DATE" P=No M=No N="PUR_Date" Z=false
+);
+
+#==============================================================
+# Table : QUOTATIONS
+#==============================================================
+CreateTble C=QUOTATIONS N="Quotations"
+(
+   C=QUO_IDX T="LONG" P=Yes M=Yes N="QUO_Idx" Z=false,
+   C=CLI_IDX T="LONG" P=No M=No N="CLI_Idx" Z=false,
+   C=QUO_NUM T="LONG" P=No M=No N="QUO_Num" Z=false,
+   C=QUO_DATE T="DATE" P=No M=No N="QUO_Date" Z=false
+);
+
+#==============================================================
+# Table : SUPPLIERS
+#==============================================================
+CreateTble C=SUPPLIERS N="Suppliers"
+(
+   C=SUP_IDX T="LONG" P=Yes M=Yes N="SUP_Idx" Z=false,
+   C=SUP_NAME T="VARCHAR(30)" P=No M=No N="SUP_Name" Z=false,
+   C=SUP_SURNAME T="VARCHAR(30)" P=No M=No N="SUP_Surname" Z=false,
+   C=SUP_ADDRESS T="LONGCHAR(255)" P=No M=No N="SUP_Address" Z=false
+);
+
+CreateJoin C=FK_INVOICE_R3_CLIENTS T=INVOICE P=CLIENTS D=restrict U=restrict
+(
+      P=CLI_IDX F=CLI_IDX
+);
+
+CreateJoin C=FK_ITEMS_R2_GROUP T=ITEMS P="GROUP" D=restrict U=restrict
+(
+      P=GRP_IDX F=GRP_IDX
+);
+
+CreateJoin C=FK_LNK_INV__LNK_INV_I_ITEMS T=LNK_INV_ITM P=ITEMS D=restrict U=restrict
+(
+      P=ITM_IDX F=ITM_IDX
+);
+
+CreateJoin C=FK_LNK_INV__LNK_INV_I_INVOICE T=LNK_INV_ITM P=INVOICE D=restrict U=restrict
+(
+      P=INV_IDX F=INV_IDX
+);
+
+CreateJoin C=FK_LNK_PUR__LNK_PUR_I_PURCHASE T=LNK_PUR_ITM P=PURCHASE D=restrict U=restrict
+(
+      P=PUR_IDX F=PUR_IDX
+);
+
+CreateJoin C=FK_LNK_PUR__LNK_PUR_I_ITEMS T=LNK_PUR_ITM P=ITEMS D=restrict U=restrict
+(
+      P=ITM_IDX F=ITM_IDX
+);
+
+CreateJoin C=FK_LNK_QUO__LNK_QUO_I_ITEMS T=LNK_QUO_ITEM P=ITEMS D=restrict U=restrict
+(
+      P=ITM_IDX F=ITM_IDX
+);
+
+CreateJoin C=FK_LNK_QUO__LNK_QUO_I_QUOTATIO T=LNK_QUO_ITEM P=QUOTATIONS D=restrict U=restrict
+(
+      P=QUO_IDX F=QUO_IDX
+);
+
+CreateJoin C=FK_PAIEMENT_R5_PURCHASE T=PAIEMENT P=PURCHASE D=restrict U=restrict
+(
+      P=PUR_IDX F=PUR_IDX
+);
+
+CreateJoin C=FK_PAIEMENT_R6_INVOICE T=PAIEMENT P=INVOICE D=restrict U=restrict
+(
+      P=INV_IDX F=INV_IDX
+);
+
+CreateJoin C=FK_PURCHASE_R1_SUPPLIER T=PURCHASE P=SUPPLIERS D=restrict U=restrict
+(
+      P=SUP_IDX F=SUP_IDX
+);
+
+CreateJoin C=FK_QUOTATIO_R4_CLIENTS T=QUOTATIONS P=CLIENTS D=restrict U=restrict
+(
+      P=CLI_IDX F=CLI_IDX
+);
+

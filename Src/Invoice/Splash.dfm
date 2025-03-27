@@ -1,0 +1,57 @@
+object Form5: TForm5
+  Left = 0
+  Top = 0
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'Form5'
+  ClientHeight = 382
+  ClientWidth = 504
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsStayOnTop
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    AlignWithMargins = True
+    Left = 3
+    Top = 352
+    Width = 498
+    Height = 25
+    Margins.Bottom = 5
+    Align = alBottom
+    Alignment = taCenter
+    Caption = 'Try to Connect Database ...'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    ExplicitWidth = 256
+  end
+  object Image1: TImage
+    AlignWithMargins = True
+    Left = 25
+    Top = 25
+    Width = 454
+    Height = 319
+    Margins.Left = 25
+    Margins.Top = 25
+    Margins.Right = 25
+    Align = alTop
+    Center = True
+    ParentShowHint = False
+    Proportional = True
+    ShowHint = False
+    Stretch = True
+    ExplicitLeft = 3
+    ExplicitTop = 3
+    ExplicitWidth = 701
+  end
+end
